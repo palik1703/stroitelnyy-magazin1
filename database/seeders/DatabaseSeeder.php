@@ -32,13 +32,56 @@ class DatabaseSeeder extends Seeder
         }
 
         $products = [
-            ['name' => 'Дрель Bosch 800W', 'category_id' => 1, 'price' => 4500, 'stock' => 10, 'is_active' => true],
-            ['name' => 'Шуруповёрт DeWalt 18V', 'category_id' => 1, 'price' => 8900, 'stock' => 5, 'is_active' => true],
-            ['name' => 'Молоток слесарный 500г', 'category_id' => 2, 'price' => 350, 'stock' => 50, 'is_active' => true],
-            ['name' => 'Кувалда 2кг', 'category_id' => 2, 'price' => 800, 'stock' => 20, 'is_active' => true],
-            ['name' => 'Ножовка по дереву', 'category_id' => 3, 'price' => 600, 'stock' => 30, 'is_active' => true],
-            ['name' => 'Рулетка 5м', 'category_id' => 4, 'price' => 280, 'stock' => 100, 'is_active' => true],
+            [
+                'name' => 'Дрель Bosch 800W',
+                'category_id' => 1,
+                'price' => 4500,
+                'stock' => 10,
+                'is_active' => true,
+                'image' => 'https://placehold.co/400x300?text=Дрель+Bosch',
+            ],
+            [
+                'name' => 'Шуруповёрт DeWalt 18V',
+                'category_id' => 1,
+                'price' => 8900,
+                'stock' => 5,
+                'is_active' => true,
+                'image' => 'https://placehold.co/400x300?text=Шуруповёрт+DeWalt',
+            ],
+            [
+                'name' => 'Молоток слесарный 500г',
+                'category_id' => 2,
+                'price' => 350,
+                'stock' => 50,
+                'is_active' => true,
+                'image' => 'https://placehold.co/400x300?text=Молоток',
+            ],
+            [
+                'name' => 'Кувалда 2кг',
+                'category_id' => 2,
+                'price' => 800,
+                'stock' => 20,
+                'is_active' => true,
+                'image' => 'https://placehold.co/400x300?text=Кувалда',
+            ],
+            [
+                'name' => 'Ножовка по дереву',
+                'category_id' => 3,
+                'price' => 600,
+                'stock' => 30,
+                'is_active' => true,
+                'image' => 'https://placehold.co/400x300?text=Ножовка',
+            ],
+            [
+                'name' => 'Рулетка 5м',
+                'category_id' => 4,
+                'price' => 280,
+                'stock' => 100,
+                'is_active' => true,
+                'image' => 'https://placehold.co/400x300?text=Рулетка',
+            ],
         ];
+
 
         foreach ($products as $p) {
             $slug = Str::slug($p['name']);
