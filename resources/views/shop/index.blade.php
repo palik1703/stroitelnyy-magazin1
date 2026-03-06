@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Каталог')
 @section('content')
+@php use Illuminate\Support\Str; @endphp
 
 {{-- Заголовок --}}
 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -29,7 +30,7 @@
         <div class="card h-100 shadow-sm border-0 product-card">
             <a href="{{ route('product.show', $product->slug) }}" class="text-decoration-none">
                 @if($product->image)
-                    <img src="{{ asset('storage/'.$product->image) }}"
+                    <img src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/'.$product->image) }}"
                          class="card-img-top"
                          style="height:220px;object-fit:cover;">
                 @else
@@ -78,33 +79,22 @@
     @endforelse
 </div>
 
-{{-- Пагинация со стрелочками --}}
+{{-- Пагинация --}}
 @if($products->lastPage() > 1)
 <div class="d-flex justify-content-center mt-5">
     <nav>
         <ul class="pagination pagination-lg">
-
-            {{-- Стрелка назад --}}
             <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
-                <a class="page-link" href="{{ $products->previousPageUrl() ?? '#' }}">
-                    ← Назад
-                </a>
+                <a class="page-link" href="{{ $products->previousPageUrl() ?? '#' }}">← Назад</a>
             </li>
-
-            {{-- Номера страниц --}}
             @for($page = 1; $page <= $products->lastPage(); $page++)
                 <li class="page-item {{ $products->currentPage() === $page ? 'active' : '' }}">
                     <a class="page-link" href="{{ $products->url($page) }}">{{ $page }}</a>
                 </li>
             @endfor
-
-            {{-- Стрелка вперёд --}}
             <li class="page-item {{ !$products->hasMorePages() ? 'disabled' : '' }}">
-                <a class="page-link" href="{{ $products->nextPageUrl() ?? '#' }}">
-                    Вперёд →
-                </a>
+                <a class="page-link" href="{{ $products->nextPageUrl() ?? '#' }}">Вперёд →</a>
             </li>
-
         </ul>
     </nav>
 </div>
@@ -125,7 +115,6 @@
     max-height: 3em;
     line-height: 1.5em;
 }
-
 </style>
 
 @endsection
