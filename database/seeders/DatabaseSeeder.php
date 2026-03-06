@@ -32,13 +32,14 @@ class DatabaseSeeder extends Seeder
         }
 
         $products = [
-            ['name' => 'Дрель Bosch 800W',       'category_id' => 1, 'price' => 4500, 'stock' => 10],
-            ['name' => 'Шуруповёрт DeWalt 18V',  'category_id' => 1, 'price' => 8900, 'stock' => 5],
-            ['name' => 'Молоток слесарный 500г',  'category_id' => 2, 'price' => 350,  'stock' => 50],
-            ['name' => 'Кувалда 2кг',             'category_id' => 2, 'price' => 800,  'stock' => 20],
-            ['name' => 'Ножовка по дереву',       'category_id' => 3, 'price' => 600,  'stock' => 30],
-            ['name' => 'Рулетка 5м',              'category_id' => 4, 'price' => 280,  'stock' => 100],
+            ['name' => 'Дрель Bosch 800W', 'category_id' => 1, 'price' => 4500, 'stock' => 10, 'is_active' => true],
+            ['name' => 'Шуруповёрт DeWalt 18V', 'category_id' => 1, 'price' => 8900, 'stock' => 5, 'is_active' => true],
+            ['name' => 'Молоток слесарный 500г', 'category_id' => 2, 'price' => 350, 'stock' => 50, 'is_active' => true],
+            ['name' => 'Кувалда 2кг', 'category_id' => 2, 'price' => 800, 'stock' => 20, 'is_active' => true],
+            ['name' => 'Ножовка по дереву', 'category_id' => 3, 'price' => 600, 'stock' => 30, 'is_active' => true],
+            ['name' => 'Рулетка 5м', 'category_id' => 4, 'price' => 280, 'stock' => 100, 'is_active' => true],
         ];
+
         foreach ($products as $p) {
             $slug = Str::slug($p['name']);
             Product::firstOrCreate(['slug' => $slug], array_merge($p, ['slug' => $slug]));
