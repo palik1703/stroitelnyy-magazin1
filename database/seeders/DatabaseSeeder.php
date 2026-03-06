@@ -12,12 +12,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::create([
-            'name'     => 'Администратор',
-            'email'    => 'admin@example.com',
-            'password' => bcrypt('password'),
-            'is_admin' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Администратор',
+                'password' => bcrypt('password'),
+                'is_admin' => 1,
+            ]
+        );
 
         $categories = [
             ['name' => 'Дрели и шуруповёрты', 'slug' => 'dreli'],
@@ -26,19 +28,20 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Измерительные',         'slug' => 'izmeritelnyye'],
         ];
         foreach ($categories as $cat) {
-            Category::create($cat);
+            Category::firstOrCreate(['slug' => $cat['slug']], $cat);
         }
 
         $products = [
-            ['name'=>'Дрель Bosch 800W',      'category_id'=>1,'price'=>4500,'stock'=>10],
-            ['name'=>'Шуруповёрт DeWalt 18V', 'category_id'=>1,'price'=>8900,'stock'=>5],
-            ['name'=>'Молоток слесарный 500г','category_id'=>2,'price'=>350, 'stock'=>50],
-            ['name'=>'Кувалда 2кг',            'category_id'=>2,'price'=>800, 'stock'=>20],
-            ['name'=>'Ножовка по дереву',      'category_id'=>3,'price'=>600, 'stock'=>30],
-            ['name'=>'Рулетка 5м',             'category_id'=>4,'price'=>280, 'stock'=>100],
+            ['name' => 'Дрель Bosch 800W',       'category_id' => 1, 'price' => 4500, 'stock' => 10],
+            ['name' => 'Шуруповёрт DeWalt 18V',  'category_id' => 1, 'price' => 8900, 'stock' => 5],
+            ['name' => 'Молоток слесарный 500г',  'category_id' => 2, 'price' => 350,  'stock' => 50],
+            ['name' => 'Кувалда 2кг',             'category_id' => 2, 'price' => 800,  'stock' => 20],
+            ['name' => 'Ножовка по дереву',       'category_id' => 3, 'price' => 600,  'stock' => 30],
+            ['name' => 'Рулетка 5м',              'category_id' => 4, 'price' => 280,  'stock' => 100],
         ];
         foreach ($products as $p) {
-            Product::create(array_merge($p, ['slug' => Str::slug($p['name'])]));
+            $slug = Str::slug($p['name']);
+            Product::firstOrCreate(['slug' => $slug], array_merge($p, ['slug' => $slug]));
         }
     }
 }
