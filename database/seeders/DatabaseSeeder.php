@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 'price'       => 4500,
                 'stock'       => 10,
                 'is_active'   => true,
-                'image'       => 'products/Дрель Bosch 800W.jpg',
+                'image'       => 'Дрель Bosch 800W.jpg',
             ],
             [
                 'name'        => 'Шуруповёрт DeWalt 18V',
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                 'price'       => 8900,
                 'stock'       => 5,
                 'is_active'   => true,
-                'image'       => 'products/Шуруповёрт DeWalt 18V.jpg',
+                'image'       => 'Шуруповёрт DeWalt 18V.jpg',
             ],
             [
                 'name'        => 'Молоток слесарный 500г',
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
                 'price'       => 350,
                 'stock'       => 50,
                 'is_active'   => true,
-                'image'       => 'products/Молоток слесарный 500г.webp',
+                'image'       => 'Молоток слесарный 500г.webp',
             ],
             [
                 'name'        => 'Кувалда 2кг',
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
                 'price'       => 800,
                 'stock'       => 20,
                 'is_active'   => true,
-                'image'       => 'products/Кувалда 2кг.webp',
+                'image'       => 'Кувалда 2кг.webp',
             ],
             [
                 'name'        => 'Ножовка по дереву',
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
                 'price'       => 600,
                 'stock'       => 30,
                 'is_active'   => true,
-                'image'       => 'products/Ножовка по дереву.webp',
+                'image'       => 'Ножовка по дереву.webp',
             ],
             [
                 'name'        => 'Рулетка 5м',
@@ -79,12 +79,12 @@ class DatabaseSeeder extends Seeder
                 'price'       => 280,
                 'stock'       => 100,
                 'is_active'   => true,
-                'image'       => 'products/Рулетка 5м.webp',
+                'image'       => 'Рулетка 5м.webp',
             ],
         ];
 
         foreach ($products as $p) {
-            $slug = Str::slug($p['name']); 
+            $slug = Str::slug($p['name']);
             Product::firstOrCreate(
                 ['slug' => $slug],
                 array_merge($p, ['slug' => $slug])
