@@ -83,6 +83,7 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+
         foreach ($products as $p) {
             $slug = Str::slug($p['name']);
             Product::firstOrCreate(
