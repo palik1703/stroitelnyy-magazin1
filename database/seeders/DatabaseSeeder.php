@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'admin@example.com'],
             [
-                'name' => 'Администратор',
+                'name'     => 'Администратор',
                 'password' => bcrypt('password'),
                 'is_admin' => 1,
             ]
@@ -24,68 +24,71 @@ class DatabaseSeeder extends Seeder
         $categories = [
             ['name' => 'Дрели и шуруповёрты', 'slug' => 'dreli'],
             ['name' => 'Молотки и кувалды',   'slug' => 'molotki'],
-            ['name' => 'Пилы и ножовки',       'slug' => 'pily'],
-            ['name' => 'Измерительные',         'slug' => 'izmeritelnyye'],
+            ['name' => 'Пилы и ножовки',      'slug' => 'pily'],
+            ['name' => 'Измерительные',       'slug' => 'izmeritelnyye'],
         ];
+
         foreach ($categories as $cat) {
             Category::firstOrCreate(['slug' => $cat['slug']], $cat);
         }
 
         $products = [
             [
-                'name' => 'Дрель Bosch 800W',
+                'name'        => 'Дрель Bosch 800W',
                 'category_id' => 1,
-                'price' => 4500,
-                'stock' => 10,
-                'is_active' => true,
-                'image' => 'https://placehold.co/400x300?text=Дрель+Bosch',
+                'price'       => 4500,
+                'stock'       => 10,
+                'is_active'   => true,
+                'image'       => 'products/Дрель Bosch 800W.jpg',
             ],
             [
-                'name' => 'Шуруповёрт DeWalt 18V',
+                'name'        => 'Шуруповёрт DeWalt 18V',
                 'category_id' => 1,
-                'price' => 8900,
-                'stock' => 5,
-                'is_active' => true,
-                'image' => 'https://placehold.co/400x300?text=Шуруповёрт+DeWalt',
+                'price'       => 8900,
+                'stock'       => 5,
+                'is_active'   => true,
+                'image'       => 'products/Шуруповёрт DeWalt 18V.jpg',
             ],
             [
-                'name' => 'Молоток слесарный 500г',
+                'name'        => 'Молоток слесарный 500г',
                 'category_id' => 2,
-                'price' => 350,
-                'stock' => 50,
-                'is_active' => true,
-                'image' => 'https://placehold.co/400x300?text=Молоток',
+                'price'       => 350,
+                'stock'       => 50,
+                'is_active'   => true,
+                'image'       => 'products/Молоток слесарный 500г.webp',
             ],
             [
-                'name' => 'Кувалда 2кг',
+                'name'        => 'Кувалда 2кг',
                 'category_id' => 2,
-                'price' => 800,
-                'stock' => 20,
-                'is_active' => true,
-                'image' => 'https://placehold.co/400x300?text=Кувалда',
+                'price'       => 800,
+                'stock'       => 20,
+                'is_active'   => true,
+                'image'       => 'products/Кувалда 2кг.webp',
             ],
             [
-                'name' => 'Ножовка по дереву',
+                'name'        => 'Ножовка по дереву',
                 'category_id' => 3,
-                'price' => 600,
-                'stock' => 30,
-                'is_active' => true,
-                'image' => 'https://placehold.co/400x300?text=Ножовка',
+                'price'       => 600,
+                'stock'       => 30,
+                'is_active'   => true,
+                'image'       => 'products/Ножовка по дереву.webp',
             ],
             [
-                'name' => 'Рулетка 5м',
+                'name'        => 'Рулетка 5м',
                 'category_id' => 4,
-                'price' => 280,
-                'stock' => 100,
-                'is_active' => true,
-                'image' => 'https://placehold.co/400x300?text=Рулетка',
+                'price'       => 280,
+                'stock'       => 100,
+                'is_active'   => true,
+                'image'       => 'products/Рулетка 5м.webp',
             ],
         ];
 
-
         foreach ($products as $p) {
-            $slug = Str::slug($p['name']);
-            Product::firstOrCreate(['slug' => $slug], array_merge($p, ['slug' => $slug]));
+            $slug = Str::slug($p['name']); 
+            Product::firstOrCreate(
+                ['slug' => $slug],
+                array_merge($p, ['slug' => $slug])
+            );
         }
     }
 }
