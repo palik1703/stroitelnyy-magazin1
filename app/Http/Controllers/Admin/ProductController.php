@@ -31,7 +31,6 @@ class ProductController extends Controller
             'image'       => 'nullable|image|max:2048',
         ]);
 
-        // Уникальный slug чтобы не было конфликтов
         $data['slug']      = Str::slug($data['name']) . '-' . time();
         $data['is_active'] = $request->has('is_active');
 
