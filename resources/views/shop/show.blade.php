@@ -1,8 +1,7 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 @section('title', $product->name)
 @section('content')
 
-{{-- Навигация (хлебные крошки) --}}
 <nav aria-label="breadcrumb" class="mb-4">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">🏠 Главная</a></li>
@@ -18,11 +17,10 @@
 </nav>
 
 <div class="row g-5">
-    {{-- Фото товара --}}
     <div class="col-md-5">
         <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
             @if($product->image)
-                <img src="{{ asset('storage/'.$product->image) }}"
+                <img src="{{ asset($product->image) }}"
                      class="img-fluid w-100"
                      style="max-height:420px;object-fit:cover;">
             @else
@@ -32,17 +30,14 @@
         </div>
     </div>
 
-    {{-- Информация о товаре --}}
     <div class="col-md-7">
         <p class="text-muted mb-1">{{ $product->category->name ?? '' }}</p>
         <h1 class="fw-bold mb-3">{{ $product->name }}</h1>
 
-        {{-- Цена --}}
         <div class="mb-3">
             <span class="display-6 fw-bold text-success">{{ number_format($product->price, 2) }} ₽</span>
         </div>
 
-        {{-- Наличие --}}
         <div class="mb-3">
             @if($product->stock > 0)
                 <span class="badge bg-success fs-6 px-3 py-2">✅ В наличии: {{ $product->stock }} шт.</span>
@@ -51,7 +46,6 @@
             @endif
         </div>
 
-        {{-- Описание --}}
         @if($product->description)
         <div class="mb-4">
             <h5 class="fw-bold">Описание</h5>
@@ -59,7 +53,6 @@
         </div>
         @endif
 
-        {{-- Характеристики --}}
         <div class="card bg-light border-0 mb-4">
             <div class="card-body">
                 <h6 class="fw-bold mb-3">📋 Характеристики</h6>
@@ -80,7 +73,6 @@
             </div>
         </div>
 
-        {{-- Кнопки --}}
         <div class="d-flex gap-3">
             @if($product->stock > 0)
                 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex-grow-1">
@@ -101,7 +93,6 @@
     </div>
 </div>
 
-{{-- Похожие товары --}}
 @if($relatedProducts->count() > 0)
 <div class="mt-5">
     <h3 class="fw-bold mb-4">🔎 Похожие товары</h3>
@@ -111,7 +102,7 @@
             <div class="card h-100 border-0 shadow-sm">
                 <a href="{{ route('product.show', $related->slug) }}">
                     @if($related->image)
-                        <img src="{{ asset('storage/'.$related->image) }}"
+                        <img src="{{ asset($related->image) }}"
                              class="card-img-top" style="height:150px;object-fit:cover;">
                     @else
                         <div class="bg-light d-flex align-items-center justify-content-center"
