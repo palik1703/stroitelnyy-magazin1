@@ -31,7 +31,8 @@ class ProductController extends Controller
             'image'       => 'nullable|image|max:2048',
         ]);
 
-        $data['slug']      = Str::slug($data['name']);
+        // Уникальный slug чтобы не было конфликтов
+        $data['slug']      = Str::slug($data['name']) . '-' . time();
         $data['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('image')) {

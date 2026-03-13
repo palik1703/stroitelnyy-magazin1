@@ -34,6 +34,14 @@
         <label class="form-label">Фото товара</label>
         <input type="file" name="image" class="form-control" accept="image/*">
     </div>
+    <div class="mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="is_active" value="1" id="is_active" checked>
+            <label class="form-check-label" for="is_active">
+                Активен (отображать на сайте)
+            </label>
+        </div>
+    </div>
     <button type="submit" class="btn btn-success btn-lg">Сохранить</button>
     <a href="{{ route('admin.products.index') }}" class="btn btn-secondary btn-lg">Отмена</a>
 </form>
