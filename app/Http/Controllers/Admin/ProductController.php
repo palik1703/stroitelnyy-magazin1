@@ -31,10 +31,14 @@ class ProductController extends Controller
             'image'       => 'nullable|image|max:2048',
         ]);
 
-        $data['slug'] = Str::slug($data['name']);
+        $data['slug']      = Str::slug($data['name']);
+        $data['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $file     = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path(), $filename);
+            $data['image'] = $filename;
         }
 
         Product::create($data);
@@ -58,8 +62,13 @@ class ProductController extends Controller
             'image'       => 'nullable|image|max:2048',
         ]);
 
+        $data['is_active'] = $request->has('is_active');
+
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $file     = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path(), $filename);
+            $data['image'] = $filename;
         }
 
         $product->update($data);
