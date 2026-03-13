@@ -12,15 +12,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::firstOrCreate(
-            ['email' => 'admin@example.com'],
-            [
-                'name'     => 'Администратор',
-                'password' => bcrypt('password'),
-                'is_admin' => 1,
-            ]
-        );
-
         $categories = [
             ['name' => 'Дрели и шуруповёрты', 'slug' => 'dreli'],
             ['name' => 'Молотки и кувалды',   'slug' => 'molotki'],
