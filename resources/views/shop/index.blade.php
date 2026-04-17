@@ -3,13 +3,11 @@
 @section('content')
 @php use Illuminate\Support\Str; @endphp
 
-{{-- Заголовок --}}
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="fw-bold">🔨 Строительные инструменты</h1>
     <span class="text-muted">Найдено: {{ $products->total() }} товаров</span>
 </div>
 
-{{-- Категории --}}
 <div class="mb-4 d-flex flex-wrap gap-2">
     <a href="{{ route('home') }}"
         class="btn btn-sm {{ !isset($category) ? 'btn-dark' : 'btn-outline-dark' }}">
@@ -23,7 +21,6 @@
     @endforeach
 </div>
 
-{{-- Товары --}}
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     @forelse($products as $product)
     <div class="col">
@@ -79,7 +76,6 @@
     @endforelse
 </div>
 
-{{-- Пагинация --}}
 @if($products->lastPage() > 1)
 <div class="d-flex justify-content-center mt-5">
     <nav>
